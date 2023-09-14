@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  server:
+    container_name: hbbs
+    image: rrustdesk/rustdesk-server-pro:latest
+    network_mode: host
+    volumes:
+      - ./data:/root
+    command: hbbs
+    depends_on:
+      - hbbr
+    restart: unless-stopped
+
+  hbbr:
+    container_name: hbbr
+    image: rustdesk/rustdesk-server-pro:latest
+    network_mode: host
+    volumes:
+      - ./data:/root
+    command: hbbr
+    restart: unless-stopped
